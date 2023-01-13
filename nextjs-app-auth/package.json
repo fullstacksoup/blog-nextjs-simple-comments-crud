@@ -1,0 +1,41 @@
+{
+  "name": "nextjs",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
+  },
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "@next/font": "latest",
+    "axios": "^1.2.1",
+    "bad-words": "^3.0.4",
+    "moment": "^2.29.4",
+    "next": "latest",
+    "next-auth": "^4.18.7",
+    "nodemailer": "^6.8.0",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-query": "^3.39.2",
+    "react-virtualized": "^9.22.3",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.17",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "4.9.4"
+  }
+}
