@@ -4,10 +4,12 @@ import ReactDOM from "react-dom";
 import { Divider, Avatar, Grid, Paper, TextField, Button } from '@mui/material';
 
 
-const imgLink =
-  "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
+
+  // "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
 export default function CommentCard(props) {
+  console.log('props.userSession', props.userSession)
+  const imgLink = props.userSession.picture;
   return (
     <div style={{ padding: 14 }} className="App">
       <Paper style={{ padding: "10px 10px", marginTop: 10 }} elevation={3}>

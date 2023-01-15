@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password", }
       },
       async authorize(credentials, req) {
-        const user = { id: 22, name: "Jennifer Smith", email: "eventadmin@example.com", image: 'https://randomuser.me/api/portraits/women/72.jpg' }
+        const user = { id: 1, name: "Jennifer Smith", email: "jennifers@example.com", image: 'https://randomuser.me/api/portraits/women/72.jpg' }
           
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
@@ -91,7 +91,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
-        const user = { id: 2, name: "Terry Oscar", email: "user1@example.com", image: 'https://randomuser.me/api/portraits/women/67.jpg' }
+        const user = { id: 2, name: "Terry Oscar", email: "terryo@example.com", image: 'https://randomuser.me/api/portraits/women/67.jpg' }
   
         if (user) {
           // Any object returned will be saved in `user` property of the JWT

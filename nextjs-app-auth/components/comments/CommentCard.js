@@ -107,8 +107,9 @@ export default function CommentCard(props) {
   
   // const imgLink = "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
 
-  // const imgLink = "https://randomuser.me/api/portraits/women/67.jpg"
-  const imgLink ="https://randomuser.me/api/portraits/women/72.jpg"
+  const imgLink = "https://randomuser.me/api/portraits/women/67.jpg"
+  
+  //const imgLink = props.userSession?.user.image;
   var momentDate=new moment(props.data.DateCreated);
 // https://randomuser.me/photos
   return (

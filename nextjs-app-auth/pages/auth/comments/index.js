@@ -125,7 +125,7 @@ export default function Comments({ token, ssrData }) {
             
               <Grid item xs={12}>
                 <NewComment handleNewComment={handleNewComment}                               
-                            userName={'John Smith'}
+                            userSession={token}
                             setNewComment={setNewComment} 
                             newComment={newComment}/>                
               </Grid>
