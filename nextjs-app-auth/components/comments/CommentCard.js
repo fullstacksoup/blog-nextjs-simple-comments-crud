@@ -1,13 +1,9 @@
 import * as React from 'react';
 import moment from 'moment';
-import { Divider, Avatar, Grid, Paper, Button, TextField } from '@mui/material';
+import { Avatar, Grid, Paper, Button, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import ReplyIcon from '@mui/icons-material/Reply';
 import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
-import Badge from '@mui/material/Badge';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import DialogDeleteComment from './DialogDeleteComment'
 import Stack from '@mui/material/Stack';
 import axiosConn from '@/src/axiosConn'
@@ -117,7 +113,7 @@ export default function CommentCard(props) {
       <Paper style={{ padding: "10px 10px", marginTop: 10 }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item justifyContent="left">
-            <Avatar alt={props.data.Name} src={imgLink} />
+            <Avatar alt={props.data.Name} src={props.data.Picture} />
           </Grid>
           <Grid justifyContent="left" item xs zeroMinWidth>
             <Grid container wrap="nowrap" spacing={2}>            

@@ -12,9 +12,12 @@ export default async function (req, res){
     const db = await open(
       {filename: dbFile , driver: sqlite3.Database}
     );
-    // const items = await db.all('select * from Products order by ProductName desc');
-    const items = await db.all('SELECT * FROM Comments');
-    var ret ={
+    const sqlQuery = 'SELECT c.CommentId, c.UserId, c.Content, ' +
+    'c.Replies, c.IsActive, c.DateCreated, c.DateModified,' +
+    'u.UserId, u.Name, u.Picture ' +
+    'FROM Comments c, Users u WHERE c.UserId = u.UserId';        
+    
+    const items = await db.all(sqlQuery);    var ret ={
       items: items
     }
     res.json(ret);

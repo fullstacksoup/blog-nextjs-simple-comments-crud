@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Comments({ token, ssrData }) {
-  
+  console.log('Comments', ssrData)
   const [newComment, setNewComment] = useState('');
   const [commentsData, setCommentsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
