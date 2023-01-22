@@ -1,7 +1,7 @@
 const sqlite = require('sqlite');
 const sqlite3= require('sqlite3');
 import {open} from 'sqlite';
-import LibConst from "../../../libs/SliteConn";
+import LibConst from "@/libs/SiteConn";
 
 //* D E L E T E   A   S I N G L E   C O M M E N T
 export default async function (req, res){
