@@ -8,6 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 export default function DialogDeleteComment(props) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -37,7 +38,7 @@ export default function DialogDeleteComment(props) {
           <Button variant="text" autoFocus onClick={props.handleDialogClose} color="warning">
             No
           </Button>
-          <Button onClick={props.handleDialogDeleteReply} >
+          <Button onClick={(e) =>props.handleDialogDeleteComment(e)} >
             Yes
           </Button>
         </DialogActions>

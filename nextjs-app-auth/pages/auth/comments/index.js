@@ -8,6 +8,7 @@ import CommentSkeleton from '@/components/comments/CommentSkeleton';
 import { Grid, Paper } from '@mui/material';
 import axiosConn from '@/src/axiosConn'
 import { getToken } from "next-auth/jwt";
+
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -18,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Comments({ token, ssrData }) {
-  console.log('Comments', ssrData)
+  
   const [newComment, setNewComment] = useState('');
   const [commentsData, setCommentsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,20 +45,17 @@ export default function Comments({ token, ssrData }) {
   const handleNewComment = async () => {
     var tmpArr = []
     var id=0
-
+    setIsLoading(true)
     axiosConn.post('/api/comments/add', { UserId: Number(token.sub), Content: newComment })
     .then((data) => {
-   //   console.log(data); // JSON data parsed by `data.json()` call
-      // setOpen(false);
-      commentsData.forEach(elem => {
-        tmpArr.push(elem)
-        id++
-      })
-    
-      tmpArr.push({Id: 2, UserId: 22, Name: 'John Smith', Content: newComment})
-      setCommentsData(tmpArr)
+      
+      console.log(data.data.items)
+      setCommentsData(data.data.items)      
       setNewComment('')  
-    
+      setTimeout(() => {
+        setIsLoading(false);  
+      }, 600);
+ 
     });            
   }
 
@@ -66,10 +64,13 @@ export default function Comments({ token, ssrData }) {
   //*************************************************************************************** */
 
   const handleDeleteComment = (ID) => {
-    console.log('handleDeleteComment', ID)
+    setIsLoading(true);  
     axiosConn.post('/api/comments/delete', { CommentId: ID })
     .then((data) => {    
       setCommentsData(data.data.items)      
+      setTimeout(() => {
+        setIsLoading(false);  
+      }, 600);
     });      
   }
     
@@ -100,6 +101,7 @@ export default function Comments({ token, ssrData }) {
         </Typography>        
 
         <Grid container spacing={1}>
+     
           {isLoading ?
             <>
               {[1,2,3,4].map(item => (
@@ -110,11 +112,19 @@ export default function Comments({ token, ssrData }) {
             </>
           :
           <>
+            <Grid item xs={12}>
+                <NewComment handleNewComment={handleNewComment}                               
+                            userSession={token}
+                            setNewComment={setNewComment} 
+                            newComment={newComment}/>                
+            </Grid>
+
             {commentsData.map((item, index) => (
                 <Grid item xs={12} key={index}>                                   
                   <CommentCard currentUserId={token.sub}
                                data={item} 
                                key={index}
+                               userAvatarPic={token.picture}
                                handleDeleteComment={handleDeleteComment} 
                                handleSaveReplyEdit={handleSaveReplyEdit}
                                //handleDeleteReply={handleDeleteReply}
@@ -123,12 +133,7 @@ export default function Comments({ token, ssrData }) {
                 </Grid>
               ))}
             
-              <Grid item xs={12}>
-                <NewComment handleNewComment={handleNewComment}                               
-                            userSession={token}
-                            setNewComment={setNewComment} 
-                            newComment={newComment}/>                
-              </Grid>
+             
             </>
           }
         </Grid>
@@ -147,6 +152,7 @@ export async function getServerSideProps(context) {
   const result = await fetch('http://localhost:3000/api/comments/list')
   const ssrData = await result.json()
 
+  
   return {
     props: {
       ssrData: ssrData,

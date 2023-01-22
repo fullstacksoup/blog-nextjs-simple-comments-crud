@@ -97,17 +97,12 @@ export default function CommentCard(props) {
       setRepliesCount(repliesCount + 1)                    
       setIsEditComment(false);    
     });            
-//     commentsData.filter(c => c.Id === ID)
+
     
   }
-  
-  // const imgLink = "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
-
-  const imgLink = "https://randomuser.me/api/portraits/women/67.jpg"
-  
-  //const imgLink = props.userSession?.user.image;
+    
   var momentDate=new moment(props.data.DateCreated);
-// https://randomuser.me/photos
+  // const avatarImg = Boolean(props.data.Picture) ? props.data.Picture : props.userAvatarPic;
   return (
     <div style={{ padding: 14 }} className="App">
       <Paper style={{ padding: "10px 10px", marginTop: 10 }}>
@@ -132,7 +127,7 @@ export default function CommentCard(props) {
                   <>
                     {/* <Button variant="text" color="warning" startIcon={<DeleteIcon/>} onClick={() => props.handleDeleteComment(props.data.Id)}>Delete</Button> */}
                     <Stack direction="row" spacing={2}>
-                      <DialogDeleteComment handleDeleteComment={props.handleDeleteComment} 
+                      <DialogDeleteComment 
                                           handleDialogOpen={handleDialogOpen} 
                                           handleDialogClose={handleDialogClose}
                                           handleDialogDeleteComment={handleDialogDeleteComment} 

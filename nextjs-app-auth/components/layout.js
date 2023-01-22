@@ -200,16 +200,7 @@ export default function AppLayout(props) {
                 }>
               <Button color="inherit" component={Link} href="/auth/comments" sx={{ml: 2}}>Comments</Button>                  
             </Tooltip> 
-            <Tooltip
-                arrow
-                title={
-                  <>
-                    <Typography color="inherit"><b>Comments w Infinite Scroll</b></Typography>
-                    {'Latest updates to the site'}
-                  </>
-                }>
-              <Button color="inherit" component={Link} href="/auth/comments-infinite-scroll" sx={{ml: 2}}>Comments w Infinite Scroll</Button>                  
-            </Tooltip> 
+           
             </>
           )}                                      
           
@@ -232,22 +223,7 @@ export default function AppLayout(props) {
             {session?.user && (
             <>
             <AppBarMenu handleDrawerOpen={handleDrawerOpen} session={session}/>
-          
-            {/* 
-                {session.user.image && (
-                  <Avatar alt={session.user.image} src={session.user.image} />
-                )}
-                  <Typography variant='inherit' style={{marginTop: 5}}>Welcome</Typography>
-                  <Typography variant='inherit' style={{marginTop: 5}}><strong>{session.user.email ?? session.user.name}</strong></Typography>
-                  
-                <Button color="inherit" 
-                          component={Link} 
-                          onCLick={(e) => {e.preventDefault(); signOut()}}
-                          href={`/api/auth/signout`} 
-                          sx={{ml: 2}}>Sign out
-                  </Button>                  
-               */}
-               </>
+            </>
             )}
             </Stack>
 

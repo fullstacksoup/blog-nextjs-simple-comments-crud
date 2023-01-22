@@ -15,12 +15,13 @@ export default async function (req, res){
     const sqlQuery = 'SELECT c.CommentId, c.UserId, c.Content, ' +
     'c.Replies, c.IsActive, c.DateCreated, c.DateModified,' +
     'u.UserId, u.Name, u.Picture ' +
-    'FROM Comments c, Users u WHERE c.UserId = u.UserId';        
+    'FROM Comments c, Users u WHERE c.UserId = u.UserId ORDER BY c.CommentId DESC';  
     
     const items = await db.all(sqlQuery);    var ret ={
       items: items
     }
-    res.json(ret);
+    res.status(200).json(ret);
+
   } catch (err) {
       console.error(err);
       res.status(500).send();    

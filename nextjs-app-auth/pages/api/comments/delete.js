@@ -1,7 +1,6 @@
 const sqlite = require('sqlite');
 const sqlite3= require('sqlite3');
 import {open} from 'sqlite';
-import moment from 'moment';
 import LibConst from "../../../libs/SliteConn";
 
 //* D E L E T E   A   S I N G L E   C O M M E N T
@@ -21,7 +20,12 @@ export default async function (req, res){
       data.CommentId,
     )    
     
-    const items = await db.all('SELECT * FROM Comments');
+    const sqlSelectQuery = 'SELECT c.CommentId, c.UserId, c.Content, ' +
+    'c.Replies, c.IsActive, c.DateCreated, c.DateModified,' +
+    'u.UserId, u.Name, u.Picture ' +
+    'FROM Comments c, Users u WHERE c.UserId = u.UserId ORDER BY c.CommentId DESC';  
+
+    const items = await db.all(sqlSelectQuery);
     var ret ={
       items: items
     }

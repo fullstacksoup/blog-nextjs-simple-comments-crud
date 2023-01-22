@@ -7,13 +7,10 @@ import LibConst from "../../../libs/SliteConn";
 //
 export default async function (req, res){
   try{
-    console.log('ADD API', req.body);
-
     var data = req.body
     
     var today = new Date();
     const createData = moment(today).format('YYYY-MM-DD HH:MM:SS');
-    console.log('API today', today);
     
     var dbFile = LibConst.get_config().CommentDbFileName
     const db = await open(
@@ -29,11 +26,18 @@ export default async function (req, res){
       createData,
     )    
     
+    const sqlSelectQuery = 'SELECT c.CommentId, c.UserId, c.Content, ' +
+    'c.Replies, c.IsActive, c.DateCreated, c.DateModified,' +
+    'u.UserId, u.Name, u.Picture ' +
+    'FROM Comments c, Users u WHERE c.UserId = u.UserId ORDER BY c.CommentId DESC';  
 
+    const items = await db.all(sqlSelectQuery);
     var ret ={
-      CommentID: result.CommentId
+      items: items
     }
+    
     res.json(ret);
+
   } catch (err) {
       console.log(err);
       res.status(500).send();    

@@ -6,7 +6,20 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Button } from '@mui/material';
 import Link from 'next/link';
-export default function Index() {
+import { getProviders, signIn,  getSession } from "next-auth/react";
+import { getToken } from "next-auth/jwt"
+import { useRouter } from 'next/router';
+
+export default function Index({token}) {
+
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if(token !== null) router.push('/auth/comments')  
+  }, []);
+
+
+
   return (
     <Container maxWidth="md" align="center">
       <Box sx={{ my: 4 }} >
@@ -33,4 +46,18 @@ export default function Index() {
       </Box>
     </Container>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { req, res } = context
+  
+  try {    
+    const secret = process.env.NEXTAUTH_SECRET
+    const token = await getToken({ req, secret })
+ 
+    return { props: { token: token } };
+  } catch (e) {
+    return { props: [] };
+  }
+  
 }

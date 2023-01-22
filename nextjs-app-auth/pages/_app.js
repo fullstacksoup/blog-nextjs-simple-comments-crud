@@ -7,8 +7,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 // import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import { blue, red, teal, cyan, grey, deepOrange } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { red, grey } from '@mui/material/colors';
 import AppLayout from '../components/layout';
 import { SessionProvider } from "next-auth/react"
 
@@ -18,6 +18,8 @@ const clientSideEmotionCache = createEmotionCache();
 export default function MyApp(props) {
   
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  
+  // React Query Client
   const [queryClient] = React.useState(() => new QueryClient());
   
   const [darkState, setDarkState] = React.useState(true);
@@ -53,6 +55,7 @@ export default function MyApp(props) {
           mode: darkState? 'dark' : 'light',
           // mode: 'dark' ,
         },
+        // CUSTOM BREAK POINTS - Disabled for now
 
         // breakpoints: {
         //   values: {
